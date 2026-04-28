@@ -3,6 +3,11 @@
 A web-based dashboard application built with **Angular** as part of an interview assignment. Features user authentication (Sign In) and a data visualization dashboard with charts and tables.
 
 ---
+## 🔗 Live Demo
+
+> 🌐 **[Live Demo](https://drive.google.com/file/d/1O-p_L2l3-YP0GznrjX7r3b9oXYbs8aJk/view?usp=sharing)**
+
+---
 
 ## ✨ Features
 
