@@ -1,59 +1,114 @@
-# FeTasks
+# 📊 Dashboard App — Angular
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.8.
+A web-based dashboard application built with **Angular** as part of an interview assignment. Features user authentication (Sign In) and a data visualization dashboard with charts and tables.
 
-## Development server
+---
 
-To start a local development server, run:
+## ✨ Features
+
+- 🔐 **Sign In** — authentication with form validation
+- 📊 **Dashboard** — Interactive donut chart & bar chart
+- 📋 **User Table** — Data grid displaying users from API
+- 🔒 **Route Guard** — Protected routes; unauthenticated users are redirected to Sign In
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── features/
+│   │   ├── dashboard/      # Dashboard module
+│   │   └── login/          # Sign In module
+│   ├── core/
+│   │   ├── guards/             # Auth route guard
+│   │   ├── interceptor/        # HTTP interceptor
+│   │   └── services/           # Service API
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js `>= 14.x`
+- NPM `>= 6.x`
+- Angular CLI `>= 14.x`
+
+```bash
+npm install -g @angular/cli@14
+```
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/allail-qadrillah/fe-tasks-web
+
+# Navigate to project folder
+cd fe-tasks-web
+
+# Install dependencies
+npm install
+```
+
+### Run Development Server
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open your browser at `http://localhost:4200`
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Build for Production
 
 ```bash
-ng generate component component-name
+ng build --configuration production
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Output will be in the `dist/` folder.
 
-```bash
-ng generate --help
+---
+
+## 🔑 Credentials (Demo)
+
+| Field | Value |
+|-------|-------|
+| Email | `user@aemenersol.com` |
+| Password | `Test@123` |
+
+---
+
+## 🌐 API Reference
+
+### Sign In
+
+```
+POST http://test-demo.aemenersol.com/api/account/login
 ```
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
+```json
+{
+  "username": "string",
+  "password": "string"
+}
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Dashboard Data
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
+```
+GET http://test-demo.aemenersol.com/api/dashboard
+Authorization: Bearer <token>
 ```
 
-## Running end-to-end tests
+Returns `chartDonut`, `chartbar`, and `tableUsers` arrays.
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## 🔒 Authentication Flow
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. User submits credentials on Sign In page
+2. API returns a **Bearer Token**
+3. Token is stored in `localStorage`
+4. An **HTTP Interceptor** automatically attaches the token to every subsequent API request
+5. An **Auth Guard** protects the `/dashboard` route — redirects to `/login` if no token is found
